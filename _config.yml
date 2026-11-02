@@ -96,7 +96,7 @@ theme_mode: # [light | dark]
 # will be added to all media resources (site avatar, posts' images, audio and video files) paths starting with '/'
 #
 # e.g. 'https://cdn.com'
-cdn: "https://chirpy-img.netlify.app"
+cdn: ""
 
 # the avatar on sidebar, support local or CORS resources
 avatar: "https://scontent-hkg4-1.cdninstagram.com/v/t51.82787-19/683523946_17996064914947242_979206144994707035_n.jpg?stp=dst-jpg_s150x150_tt6&_nc_cat=102&ccb=7-5&_nc_sid=f7ccc5&efg=eyJ2ZW5jb2RlX3RhZyI6InByb2ZpbGVfcGljLnd3dy4xMDgwLkMzIn0%3D&_nc_ohc=vV_Xnuq09v8Q7kNvwHnZt5I&_nc_oc=Adq8e13p1Ctt1UFo_vcmtXgcf_l5dI64mtEgn6e-TAAHwlpMXL6JIwuk2XU-exeWlaE&_nc_zt=24&_nc_ht=scontent-hkg4-1.cdninstagram.com&_nc_gid=qb144NSoJAIv3t0rhKUMkg&_nc_ss=7b689&oh=00_AQTfDA2w6XPv5-dYHozubOYmcMVMCCbi-AlxWXLnE5mdag&oe=6AEDC7C0"
