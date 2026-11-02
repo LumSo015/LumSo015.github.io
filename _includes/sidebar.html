@@ -27,66 +27,43 @@
       </li>
       <!-- the real tabs -->
       {% for tab in site.tabs %}
-        <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
-          <a href="{{ tab.url | relative_url }}" class="nav-link">
-            <i class="fa-fw {{ tab.icon }}"></i>
-            {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
+        {% unless tab.url == '/tags/' %}
+          <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
+            <a href="{{ tab.url | relative_url }}" class="nav-link">
+              <i class="fa-fw {{ tab.icon }}"></i>
+              {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
 
-            <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
-          </a>
-        </li>
-        <!-- .nav-item -->
+              <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
+            </a>
+          </li>
+          <!-- .nav-item -->
+        {% endunless %}
       {% endfor %}
     </ul>
   </nav>
 
   <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
     {% unless site.theme_mode == 'light' or site.theme_mode == 'dark' %}
-      {%- capture icon_system -%}
-        <i class="fa-solid fa-display" data-theme-mode="system"></i>
-      {%- endcapture -%}
-
-      {%- capture icon_light -%}
-        <i class="fa-regular fa-sun" data-theme-mode="light"></i>
-      {%- endcapture -%}
-
-      {%- capture icon_dark -%}
-        <i class="fa-regular fa-moon" data-theme-mode="dark"></i>
-      {%- endcapture -%}
-
+      {% comment %}
+      The original three-choice theme dropdown is retained here for easy restoration.
+      {%- capture icon_system -%}<i class="fa-solid fa-display" data-theme-mode="system"></i>{%- endcapture -%}
+      {%- capture icon_light -%}<i class="fa-regular fa-sun" data-theme-mode="light"></i>{%- endcapture -%}
+      {%- capture icon_dark -%}<i class="fa-regular fa-moon" data-theme-mode="dark"></i>{%- endcapture -%}
       <div class="btn-group dropup">
-        <button
-          type="button"
-          class="btn btn-link nav-link"
-          aria-label="Switch Mode"
-          id="mode-toggle"
-          data-bs-toggle="dropdown"
-        >
-          {{- icon_light -}}
-          {{- icon_dark -}}
-          {{- icon_system -}}
+        <button type="button" class="btn btn-link nav-link" aria-label="Switch Mode" id="mode-toggle" data-bs-toggle="dropdown">
+          {{- icon_light -}}{{- icon_dark -}}{{- icon_system -}}
         </button>
         <ul class="dropdown-menu rounded-3 mb-1 p-1">
-          <li>
-            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="light">
-              {{- icon_light -}}
-              {{- site.data.locales[lang].theme.light -}}
-            </button>
-          </li>
-          <li>
-            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="dark">
-              {{- icon_dark -}}
-              {{- site.data.locales[lang].theme.dark -}}
-            </button>
-          </li>
-          <li>
-            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="system">
-              {{- icon_system -}}
-              {{- site.data.locales[lang].theme.system -}}
-            </button>
-          </li>
+          <li><button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="light">{{- icon_light -}}{{- site.data.locales[lang].theme.light -}}</button></li>
+          <li><button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="dark">{{- icon_dark -}}{{- site.data.locales[lang].theme.dark -}}</button></li>
+          <li><button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="system">{{- icon_system -}}{{- site.data.locales[lang].theme.system -}}</button></li>
         </ul>
       </div>
+      {% endcomment %}
+
+      <button type="button" class="btn btn-link nav-link" aria-label="Switch theme" id="mode-toggle">
+        <i id="mode-toggle-icon" class="fa-regular fa-moon" aria-hidden="true"></i>
+      </button>
 
       {% if site.data.contact.size > 0 %}
         <span class="icon-border"></span>
@@ -118,13 +95,18 @@
           {% assign url = entry.url %}
       {% endcase %}
 
-      {% if url %}
+      {% if url or entry.type == 'instagram' %}
         <a
-          href="{{ url }}"
+          {% if url %}
+            href="{{ url }}"
+          {% else %}
+            aria-disabled="true"
+            tabindex="-1"
+          {% endif %}
           aria-label="{{ entry.type }}"
           {% assign link_types = '' %}
 
-          {% unless entry.noblank %}
+          {% unless entry.noblank or url == empty %}
             target="_blank"
             {% assign link_types = 'noopener noreferrer' %}
           {% endunless %}

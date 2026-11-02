@@ -234,21 +234,7 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
       @extend %clickable-transition;
 
       > i {
-        display: none;
-
-        @at-root :root[data-bs-theme='light'][data-theme-persisted]
-            &[data-theme-mode='light'] {
-          display: block;
-        }
-
-        @at-root :root[data-bs-theme='dark'][data-theme-persisted]
-            &[data-theme-mode='dark'] {
-          display: block;
-        }
-
-        @at-root :root:not([data-theme-persisted]) &[data-theme-mode='system'] {
-          display: block;
-        }
+        display: block;
       }
 
       @-webkit-keyframes menu-pop {

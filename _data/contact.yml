@@ -1,18 +1,23 @@
-#  The contact options.
+# The contact options.
 
-- type: github
-  icon: "fab fa-github"
+# GitHub, Twitter, and RSS links are kept here for easy restoration.
+# - type: github
+#   icon: "fab fa-github"
+# - type: twitter
+#   icon: "fa-brands fa-x-twitter"
+# - type: rss
+#   icon: "fas fa-rss"
+#   noblank: true
 
-- type: twitter
-  icon: "fa-brands fa-x-twitter"
+# The Instagram button stays visible but disabled until the profile URL is added.
+- type: instagram
+  icon: "fa-brands fa-instagram"
+  url: ""
 
 - type: email
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
-- type: rss
-  icon: "fas fa-rss"
-  noblank: true
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
@@ -24,17 +29,17 @@
 #   url:  ''                  # Fill with your Linkedin homepage
 #
 # - type: stack-overflow
-#   icon: 'fab fa-stack-overflow'
+#   icon: 'fab fa-stack-overflow'   # icons powered by <https://fontawesome.com/>
 #   url:  ''                  # Fill with your stackoverflow homepage
 #
 # - type: bluesky
 #   icon: 'fa-brands fa-bluesky'
-#   url: ''                   # Fill with your Bluesky profile link
+#   url: ''                   # Fill with your Bluesky homepage
 #
 # - type: reddit
 #   icon: 'fa-brands fa-reddit'
-#   url: ''                   # Fill with your Reddit profile link
+#   url: ''                   # Fill with your Reddit homepage
 #
 # - type: threads
 #   icon: 'fa-brands fa-threads'
-#   url: ''                   # Fill with your Threads profile link
+#   url: ''                   # Fill with your Threads homepage

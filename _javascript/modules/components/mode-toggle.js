@@ -1,46 +1,36 @@
 /**
- * Sets up the mode toggle dropdown, allowing users to switch between light, dark, and system themes.
+ * Toggles directly between light and dark themes.
  *
  * Dependencies:
  *  - Theme (${JS_ROOT}/theme.js)
  */
 
-import 'bootstrap/js/src/dropdown.js';
+const toggle = document.querySelector('#mode-toggle');
+const icon = document.querySelector('#mode-toggle-icon');
 
-const ACTIVE_CLASS = 'active';
-const dropdown = document.querySelector('#mode-toggle + .dropdown-menu');
-const activeMode = Theme.isSystemTheme
-  ? Theme.Mode.SYSTEM
-  : Theme.resolvedTheme;
+function updateToggleIcon() {
+  const isDark = Theme.isDark;
+  icon.classList.toggle('fa-sun', isDark);
+  icon.classList.toggle('fa-moon', !isDark);
+  toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+}
 
 export function modeWatcher() {
-  if (!Theme.isToggleable) {
+  if (!Theme.isToggleable || !toggle || !icon) {
     return;
   }
 
-  dropdown.querySelectorAll('.dropdown-item').forEach((option) => {
-    const mode = option.dataset.themeMode;
-    if (mode === activeMode) {
-      option.classList.add(ACTIVE_CLASS);
-      return;
-    }
+  updateToggleIcon();
+
+  toggle.addEventListener('click', () => {
+    Theme.update(Theme.isDark ? Theme.Mode.LIGHT : Theme.Mode.DARK);
+    updateToggleIcon();
   });
 
-  dropdown.addEventListener('click', (event) => {
-    const current = event.target.closest('.dropdown-item');
-
-    if (!current) {
-      return;
+  window.addEventListener('message', (event) => {
+    if (event.data?.id === Theme.eventId) {
+      updateToggleIcon();
     }
-
-    const lastActive = dropdown.querySelector(`.${ACTIVE_CLASS}`);
-
-    if (lastActive === current) {
-      return;
-    }
-
-    lastActive.classList.remove(ACTIVE_CLASS);
-    current.classList.add(ACTIVE_CLASS);
-    Theme.update(current.dataset.themeMode);
   });
 }
