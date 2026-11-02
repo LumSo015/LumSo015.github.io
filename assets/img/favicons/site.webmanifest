@@ -1,0 +1,15 @@
+{
+  "name": "Hana Kim",
+  "short_name": "Hana",
+  "icons": [
+    {
+      "src": "/assets/img/favicons/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#d86b73",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
