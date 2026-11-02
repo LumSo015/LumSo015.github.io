@@ -9,10 +9,10 @@
 #   icon: "fas fa-rss"
 #   noblank: true
 
-# The Instagram button stays visible but disabled until the profile URL is added.
+# Instagram profile link.
 - type: instagram
   icon: "fa-brands fa-instagram"
-  url: ""
+  url: "https://www.instagram.com/cosmos_wheretogo"
 
 - type: email
   icon: "fas fa-envelope"
