@@ -155,6 +155,10 @@ $sidebar-display: 'sidebar-display'; /* the attribute for sidebar display */
           margin-right: 1.5rem;
         }
 
+        .palette-icon {
+          filter: grayscale(1);
+        }
+
         span {
           font-size: 90%;
           letter-spacing: 0.2px;
