@@ -10,8 +10,8 @@ const icon = document.querySelector('#mode-toggle-icon');
 
 function updateToggleIcon() {
   const isDark = Theme.isDark;
-  icon.classList.toggle('fa-sun', isDark);
-  icon.classList.toggle('fa-moon', !isDark);
+  icon.classList.toggle('fa-sun', !isDark);
+  icon.classList.toggle('fa-moon', isDark);
   toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
   toggle.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
 }
