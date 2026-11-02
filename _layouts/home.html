@@ -3,8 +3,12 @@ layout: default
 ---
 
 {% include lang.html %}
+
+{% assign page_number = paginator.page | default: 1 %}
+{% assign post_offset = page_number | minus: 1 | times: site.paginate %}
+{% assign gallery_posts = site.posts | offset: post_offset | limit: site.paginate %}
 <div id="post-list" class="post-gallery">
-  {% for post in paginator.posts %}
+  {% for post in gallery_posts %}
     {% if post.image and post.hidden != true %}
       {% assign src = post.image.path | default: post.image %}
 
