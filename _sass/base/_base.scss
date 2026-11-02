@@ -75,7 +75,7 @@ main {
   height: 100%;
   overflow: hidden;
 
-  @extend %rounded;
+  border-radius: 0;
 
   &:not(.no-bg) {
     background: var(--img-bg);
@@ -86,7 +86,7 @@ main {
     -o-object-fit: cover;
     object-fit: cover;
 
-    @extend %rounded;
+    border-radius: 0;
 
     @at-root #post-list & {
       width: 100%;
